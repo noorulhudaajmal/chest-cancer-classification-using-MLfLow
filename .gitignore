@@ -1,0 +1,5 @@
+/steps/logs/running_logs.log
+/steps/artifacts/
+/steps/logs/
+/src/logs/
+/.idea/

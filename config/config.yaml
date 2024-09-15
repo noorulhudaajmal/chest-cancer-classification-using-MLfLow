@@ -1,0 +1,9 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  data_config:
+    source: kaggle
+    username: hudaswati
+    sourceURL: mohamedhanyyy/chest-ctscan-images
+    extract_to: artifacts/data_ingestion
