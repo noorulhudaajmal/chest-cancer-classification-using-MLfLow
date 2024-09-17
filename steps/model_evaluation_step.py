@@ -1,8 +1,8 @@
+import mlflow
+
 from src import logger
-from src.config import ConfigManager
-from src.base_model import BaseModel
-from src.model_evaluator import ModelEvaluator
-from src.model_trainer import ModelTrainer
+from src.config.config import ConfigManager
+from src.components.model_evaluator import ModelEvaluator
 
 STAGE_NAME = "Model Evaluation Step"
 
@@ -20,9 +20,11 @@ def model_evaluation_step(config: ConfigManager):
     model_evaluator.process_test_data()
     model_evaluator.evaluate_model()
 
-    eval_params = {
-        "score": model_evaluator.score
-    }
+    mlflow.log_metrics(model_evaluator.get_score())
+
     logger.info(f">>> {STAGE_NAME} completed.")
 
-    return eval_params
+
+if __name__ == "__main__":
+    config = ConfigManager()
+    model_evaluation_step(config)

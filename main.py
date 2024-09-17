@@ -19,15 +19,15 @@ def mlflow_pipeline():
     logger.info("Loading configuration.")
     config_manager = ConfigManager()
 
-    mlflow_config = config_manager.get_mlflow_config()
+    # mlflow_config = config_manager.get_mlflow_config()
 
-    mlflow.set_registry_uri(mlflow_config.mlflow_uri)
-    tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+    # mlflow.set_registry_uri(mlflow_config.mlflow_uri)
+    # tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
     # Set the experiment name
     mlflow.set_experiment("Chest Cancer Classification")
 
-    with mlflow.start_run(run_name="Test1") as run:
+    with mlflow.start_run(run_name="VGG16") as run:
         run_id = run.info.run_id
 
         mlflow.set_tag("model_type", "cnn")
@@ -52,14 +52,10 @@ def mlflow_pipeline():
         model_initialization_step(config=config_manager)
 
         # 3. Model Training Step
-        trained_model = model_training_step(config=config_manager)
-        mlflow.keras.log_model(trained_model, "model", registered_model_name="VGG16Model")
+        model_training_step(config=config_manager)
 
         # 4. Model Evaluation Step
-        evaluation = model_evaluation_step(config=config_manager)
-        mlflow.log_metrics(
-            {"loss": evaluation["score"][0], "accuracy": evaluation["score"][1]}
-        )
+        model_evaluation_step(config=config_manager)
 
         logger.info(f"Pipeline operations completed successfully.")
 

@@ -1,9 +1,8 @@
 import mlflow
 
 from src import logger
-from src.config import ConfigManager
-from src.base_model import BaseModel
-from src.model_trainer import ModelTrainer
+from src.config.config import ConfigManager
+from src.components.model_trainer import ModelTrainer
 
 STAGE_NAME = "Model Training Step"
 
@@ -21,11 +20,12 @@ def model_training_step(config: ConfigManager):
                                  preprocessing_config=data_preprocessing_config)
     model_trainer.get_base_model()
     model_trainer.preprocess_data()
-    mlflow.tensorflow.autolog()
+    mlflow.tensorflow.autolog(log_datasets=False)
     history = model_trainer.train()
 
     logger.info(f">>> {STAGE_NAME} completed.")
 
-    return model_trainer.get_model()
 
-
+if __name__ == "__main__":
+    config = ConfigManager()
+    model_training_step(config)

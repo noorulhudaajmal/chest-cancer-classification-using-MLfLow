@@ -1,6 +1,6 @@
 from src import logger
-from src.config import ConfigManager
-from src.base_model import BaseModel
+from src.config.config import ConfigManager
+from src.components.base_model import BaseModel
 
 STAGE_NAME = "Model Initialization Step"
 
@@ -20,3 +20,6 @@ def model_initialization_step(config: ConfigManager):
     logger.info(f">>> {STAGE_NAME} completed.")
 
 
+if __name__ == "__main__":
+    config = ConfigManager()
+    model_initialization_step(config)

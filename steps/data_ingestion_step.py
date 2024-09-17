@@ -1,6 +1,6 @@
 from src import logger
-from src.config import ConfigManager
-from src.data_ingestor import DataIngestorFactory
+from src.config.config import ConfigManager
+from src.components.data_ingestor import DataIngestorFactory
 
 
 STAGE_NAME = "Data Ingestion Step"
@@ -18,3 +18,8 @@ def data_ingestion_step(config: ConfigManager):
 
     logger.info(f">>> {STAGE_NAME} completed.")
 
+
+
+if __name__ == "__main__":
+    config = ConfigManager()
+    data_ingestion_step(config)
