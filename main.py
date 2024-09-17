@@ -3,7 +3,7 @@ from urllib.parse import urlparse
 import mlflow
 
 from src import logger
-from src.config import ConfigManager
+from src.config.config import ConfigManager
 from steps.data_ingestion_step import data_ingestion_step
 from steps.model_evaluation_step import model_evaluation_step
 from steps.model_preparation_step import model_initialization_step
@@ -63,3 +63,6 @@ def mlflow_pipeline():
 
 if __name__ == "__main__":
     mlflow_pipeline()
+
+
+
