@@ -1,6 +1,6 @@
 from src import logger
 from src.config import ConfigManager
-from src.injest_data import DataIngestorFactory
+from src.data_ingestor import DataIngestorFactory
 
 
 STAGE_NAME = "Data Ingestion Step"

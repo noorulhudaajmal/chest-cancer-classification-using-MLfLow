@@ -24,3 +24,36 @@ class BaseModelConfig:
     optimizer: str
     loss_function: str
 
+
+@dataclass(frozen=True)
+class DataPreprocessingConfig:
+    training_data: Path
+    batch_size: int
+    is_augmentation: bool
+    img_size: list
+
+
+@dataclass(frozen=True)
+class ModelTrainingConfig:
+    root_dir: Path
+    trained_model_path: Path
+    base_model_path: Path
+    training_data: Path
+    n_epochs: int
+    batch_size: int
+    is_augmentation: bool
+    img_size: list
+
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    model_path: Path
+    training_data: Path
+    all_params: dict
+
+
+@dataclass(frozen=True)
+class MLFlowConfig:
+    mlflow_uri: str
+
+

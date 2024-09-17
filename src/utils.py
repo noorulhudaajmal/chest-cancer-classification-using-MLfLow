@@ -1,3 +1,4 @@
+import json
 import os
 from pathlib import Path
 from src import logger
@@ -31,3 +32,24 @@ def create_directories(dirs_path: list):
     for path in dirs_path:
         os.makedirs(path, exist_ok=True)
         logger.info(f"Directory created at {path}.")
+
+
+def save_json(path: Path, data: dict):
+    """
+    save json data
+    """
+    with open(path, "w") as f:
+        json.dump(data, f, indent=4)
+
+    logger.info(f"json file saved at: {path}.")
+
+
+def load_json(path: Path) -> dict:
+    """
+    load json files data
+    """
+    with open(path) as f:
+        content = json.load(f)
+
+    logger.info(f"json file loaded successfully from: {path}.")
+    return content

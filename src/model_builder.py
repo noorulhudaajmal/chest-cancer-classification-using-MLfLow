@@ -1,6 +1,7 @@
 import tensorflow as tf
 from abc import ABC, abstractmethod
 
+from src import logger
 
 
 class KerasCNNModel(ABC):
@@ -35,6 +36,7 @@ class VGG16Model(KerasCNNModel):
         :param input_img_size: dimensions of input image.
         :return: tensorflow keras VGG16 Model instance.
         """
+        logger.info(f"VGG16 Model is being fetched from keras application api.")
         return tf.keras.applications.VGG16(
             include_top=include_top,
             weights=weights,
@@ -57,6 +59,8 @@ class MobileNetModel(KerasCNNModel):
         :param input_img_size: dimensions of input image.
         :return: tensorflow keras MobileNet Model instance.
         """
+        logger.info(f"MobileNet Model is being fetched from keras application api.")
+
         return tf.keras.applications.MobileNet(
             include_top=include_top,
             weights=weights,
@@ -79,6 +83,8 @@ class ResNet50Model(KerasCNNModel):
         :param input_img_size: dimensions of input image.
         :return: tensorflow keras ResNet50 Model instance.
         """
+        logger.info(f"ResNet50 Model is being fetched from keras application api.")
+
         return tf.keras.applications.ResNet50(
             include_top=include_top,
             weights=weights,
